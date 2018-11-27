@@ -28,16 +28,37 @@ class Terminal:
 
 		#prints out the contents of the terminal in a readable way
 
+	def inverseCoord(self, x1, x2, y1, y2):
+		self.x1new = x1
+		self.x2new = x2
+		self.y1new = y1
+		self.y2new = y2
+		if x1-x2 < 0:
+			self.x1new = x2
+			self.x2new = x1
+		if y1-y2 < 0:
+			self.y1new = y2
+			self.y2new = y1
+		return(self.x1new, self.x2new, self.y1new, self.y2new)
+
+		#checks for any coordinates where x2 is smaller than x1
+		#or y2 than y1 and reverses them for convenience
+
 	def getChar(self, x, y):
 		return(self.container[self.returnOrder(x, y)])
 
-	def blit(self, parentTerminal):
-		#the problem is that instead of just taking the value, the variables are bound together
-		del self.container[:]
-		i = 0
-		while i < int(self.rows*self.columns):
-			self.container.append(parentTerminal.container[i])
-			i += 1
+	def blit(self, otherTerminal, xnew, ynew, x1old, x2old, y1old, y2old):
+		self.xnew = xnew
+		self.ynew = ynew
+		self.x1old, self.x2old, self.y1old, self.y2old = self.inverseCoord(x1old, x2old, y1old, y2old)
+		i = y2old - y1old
+		while i > 0:
+			o = x2old - x1old
+			while o > 0:
+				self.putChar(xnew + o, ynew + i, otherTerminal.getChar(x1old+o, y1old+i))
+				o -= 1
+			i -= 1
+
 
 	def putChar(self, x, y, char):
 		self.container[self.returnOrder(x, y)] = char
@@ -74,11 +95,9 @@ class Terminal:
 		self.drawLine(x1, y1, x1, y2, char)
 		self.drawLine(x2, y1, x2, y2, char)
 		if filled == True:
-			print("if test passed")
 			i = y2 - y1
 			o = 0
 			while o < i:
-				print("while test passed")
 				self.drawLine(x1, y2-o, x2, y2-o, char)
 				o += 1
 

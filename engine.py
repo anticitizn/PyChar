@@ -2,7 +2,7 @@ import time
 from pychar import Terminal
 
 SCREEN_HEIGHT = 30
-SCREEN_WIDTH = 30
+SCREEN_WIDTH = 50
 BACKGROUND_CHAR = "."
 
 MAP_WIDTH = 100
@@ -83,7 +83,7 @@ objects.append(Rocket)
 
 makeMap()
 while True:
-	screen.blit(gameMap)
+	screen.blit(gameMap, 0, 0, 14, 30, 14, 30)
 	performPhysics()
 	try:
 		renderObjects()
