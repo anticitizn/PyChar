@@ -3,6 +3,10 @@ from pychar import Terminal
 
 SCREEN_HEIGHT = 30
 SCREEN_WIDTH = 50
+SCREEN_X = 25
+SCREEN_Y = 30
+SCREEN_X2 = SCREEN_X + SCREEN_WIDTH
+SCREEN_Y2 = SCREEN_Y + SCREEN_HEIGHT
 BACKGROUND_CHAR = "."
 
 MAP_WIDTH = 100
@@ -16,7 +20,8 @@ def makeMap():
 
 def renderObjects():
 	for object in objects:
-		screen.putChar(object.x, object.y, object.char)
+		if is_inside(SCREEN_X, SCREEN_Y, SCREEN_X2, SCREEN_Y2, object.x, object.y):
+			screen.putChar(object.x - SCREEN_X, object.y - SCREEN_Y, object.char)
 
 def performPhysics():
 	for object in objects:
@@ -43,6 +48,13 @@ def is_blocked(x, y):
 			return True
 
 	return False
+
+def is_inside(x1, y1, x2, y2, x, y):
+	if (x > x1 and x < x2 and 
+		y > y1 and y < y2): 
+		return True
+	else: 
+		return False
 
 class Entity:
 	#A generic object
@@ -83,7 +95,7 @@ objects.append(Rocket)
 
 makeMap()
 while True:
-	screen.blit(gameMap, 0, 0, 14, 30, 14, 30)
+	screen.blit(gameMap, 0, 0, SCREEN_X, SCREEN_X2 - 1, SCREEN_Y, SCREEN_Y2 - 1)
 	performPhysics()
 	try:
 		renderObjects()

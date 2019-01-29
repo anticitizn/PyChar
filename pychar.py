@@ -52,13 +52,14 @@ class Terminal:
 		self.ynew = ynew
 		self.x1old, self.x2old, self.y1old, self.y2old = self.inverseCoord(x1old, x2old, y1old, y2old)
 		i = y2old - y1old
-		while i > 0:
+		while i >= 0:
 			o = x2old - x1old
-			while o > 0:
+			while o >= 0:
 				self.putChar(xnew + o, ynew + i, otherTerminal.getChar(x1old+o, y1old+i))
 				o -= 1
 			i -= 1
 
+		#pastes one terminal's content inside another
 
 	def putChar(self, x, y, char):
 		self.container[self.returnOrder(x, y)] = char
@@ -102,8 +103,6 @@ class Terminal:
 				o += 1
 
 
-		#summons satan
-
 """
 	#these shouldnt be in the terminal renderer itself but might be useful
 
@@ -116,11 +115,14 @@ class Terminal:
         self.container = list(file.read(self.columns*self.rows))
 """
 def testScript():
-	term1 = Terminal(14, 12, "x")
+	term1 = Terminal("term1", 14, 12, "x")
+	term2 = Terminal("term2", 14, 12, "f")
 	term1.drawLine(2, 0, 1, 3, "O")
 	term1.drawRect(5, 2, 10, 8, "S", filled=True)
 	term1.flush()
 	print()
+	term1.blit(term2, 0, 0, 0, 13, 0, 11)
+	term1.flush()
 	print(''.join(term1.container))
 	print()
 	input()
