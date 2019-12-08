@@ -126,3 +126,6 @@ def testScript():
 	print(''.join(term1.container))
 	print()
 	input()
+
+if __name__ == '__main__':
+	testScript()
