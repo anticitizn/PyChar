@@ -29,7 +29,7 @@ def performPhysics():
 	for object in objects:
 		if object.physics:
 			object.move(object.physics.mx, object.physics.my)
-			if not is_blocked(object.x, object.y + 1):
+			if not is_blocked(object.x, object.y + 1);
 				object.physics.accelerate(0, 1)
 			else:
 				object.physics.my = 0
