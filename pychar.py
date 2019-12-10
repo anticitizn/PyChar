@@ -84,7 +84,7 @@ class Terminal:
 		#draws a line, uses the bresenham library because
 		#im too lazy to do it myself right now
 
-	def drawRect(self, x1, y1, x2, y2, char, filled=False):
+	def drawRect(self, x1, x2, y1, y2, char, filled=False):
 		self.x1 = x1
 		self.y1 = y1
 		self.x2 = x2
