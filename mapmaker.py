@@ -1,21 +1,28 @@
 import json
 
-SCREEN_WIDTH = 80
-SCREEN_HEIGHT = 80
+FILE_NAME = input("FILE_NAME ")
+
+SCREEN_WIDTH = input("SCREEN_WIDTH ")
+SCREEN_HEIGHT = input("SCREEN_HEIGHT ")
 
 #camera pos
-SCREEN_X = 0
-SCREEN_Y = 0
+SCREEN_X = input("SCREEN_X ")
+SCREEN_Y = input("SCREEN_Y ")
 
 BACKGROUND_CHAR = "."
 
-MAP_WIDTH = 80
-MAP_HEIGHT = 80
+MAP_WIDTH = input("MAP_WIDTH ")
+MAP_HEIGHT = input("MAP_HEIGHT ")
 
 #rocket position
-START_X = 40
-START_Y = 74
+START_X = input("START_X ")
+START_Y = input("START_Y ")
 START_CHAR = "O"
+
+GROUND_X1 = input("GROUND_X1 ")
+GROUND_X2 = input("GROUND_X2 ")
+GROUND_Y1 = input("GROUND_Y1 ")
+GROUND_Y2 = input("GROUND_Y2 ")
 
 settings = {
     "screen-width" : SCREEN_WIDTH,
@@ -30,7 +37,14 @@ settings = {
     "start-char" : START_CHAR,
     "map-width" : MAP_HEIGHT,
     "map-height" : MAP_WIDTH,
+    "ground-x1" : GROUND_X1,
+    "ground-x2" : GROUND_X2,
+    "ground-y1" : GROUND_Y1,
+    "ground-y2" : GROUND_Y2
     }
 
-with open('settings.txt', 'w') as outfile:
+with open(FILE_NAME, 'w') as outfile:
     json.dump(settings, outfile)
+
+print("Json file dumped successfuly")
+input()

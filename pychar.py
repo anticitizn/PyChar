@@ -28,6 +28,18 @@ class Terminal:
 
 		#prints out the contents of the terminal in a readable way
 
+
+	#def flush(self):
+	#	i = 0
+	#	self.tempcont = ""
+	#	while i <= self.rows:
+	#		count1 = i*self.columns
+	#		count2 = count1 + self.columns
+	#		self.tempcont += ' '.join(self.container)[count1:count2]
+	#		self.tempcont += "\n"
+	#		i += 1
+	#	print(self.tempcont)
+
 	def inverseCoord(self, x1, x2, y1, y2):
 		self.x1new = x1
 		self.x2new = x2
